@@ -1,52 +1,73 @@
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
 
+import Image from 'next/image'
+import Link from 'next/link'
 export default function Home() {
   return (
-    <section className="relative min-h-screen bg-white dark:bg-black flex items-center">
-      <div className="container mx-auto px-6 py-24">
-        <div className="max-w-4xl mx-auto text-center space-y-8">
+    <main className="min-h-screen bg-white overflow-hidden relative">
+      <div className='max-w-7xl mx-auto overflow-hidden relative min-h-screen'>
 
-          {/* Badge */}
-          <span className="inline-block rounded-full border px-4 py-1 text-sm text-muted-foreground">
-            Modern Web Development Studio
-          </span>
+        {/* Click Button - Top Left */}
+        <Link href={"/"}>
+          <div className="flex items-center mt-10 ms-10 gap-10">
+            <Image src={"/logo.svg"} alt='logo' width={60} height={60} />
+            <span className='md:text-lg font-medium font-serif'>{'< Click'}</span>
 
-          {/* Main Heading */}
-          <h1 className="text-5xl md:text-6xl font-bold tracking-tight">
-            Build. Scale. Ship.
-            <br />
-            <span className="text-primary">DesginCode</span>
-          </h1>
-
-          {/* Description */}
-          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
-            DesginCode builds high-performance web applications using
-            Next.js, Sanity CMS, and scalable SaaS architecture —
-            engineered for speed, clarity, and growth.
-          </p>
-
-          {/* CTA Buttons */}
-          <div className="flex justify-center gap-4 pt-6">
-            <Link href="/about">
-              <Button size="lg">
-                Learn More
-              </Button>
-            </Link>
-
-            <Link href="/studio">
-              <Button size="lg" variant="outline">
-                Open CMS
-              </Button>
-            </Link>
           </div>
+        </Link>
+
+        {/* Scattered Typography - "DESIGN" letters */}
+
+        {/* D - top left, very large */}
+        <div className="absolute top-40 left-14 font-semibold text-black select-none leading-none" style={{ fontSize: '50px' }}>
+          D
         </div>
 
-        {/* Bottom Subtle Divider */}
-        <div className="mt-24 border-t pt-10 text-center text-sm text-muted-foreground">
-          © {new Date().getFullYear()} DesginCode. All rights reserved.
+        {/* O - left side, below D */}
+        <div className="absolute top-64 left-14 font-semibold text-black select-none leading-none" style={{ fontSize: '50px' }}>
+          O
+        </div>
+
+        {/* G - upper-middle area */}
+        <div className="absolute top-72 left-[20%] transform -translate-x-1/2 font-semibold text-black select-none leading-none" style={{ fontSize: '50px' }}>
+          G
+        </div>
+
+        {/* S - left side, middle */}
+        <div className="absolute top-[60%] left-14 font-semibold text-black select-none leading-none" style={{ fontSize: '50px' }}>
+          S
+        </div>
+
+        {/* E - center area, middle */}
+        <div className="absolute top-1/2 left-[45%] transform -translate-x-1/2 font-semibold text-black select-none leading-none" style={{ fontSize: '50px' }}>
+          E
+        </div>
+
+        {/* E - bottom center, lower */}
+        <div className="absolute bottom-32 left-1/3 font-semibold text-black select-none leading-none" style={{ fontSize: '50px' }}>
+          E
+        </div>
+
+        {/* I - right side, upper-middle */}
+        <div className="absolute top-[38%] right-[40%] font-semibold text-black select-none leading-none" style={{ fontSize: '50px' }}>
+          I
+        </div>
+
+        {/* E - top right area */}
+        <div className="absolute top-40 right-72 font-semibold text-black select-none leading-none" style={{ fontSize: '50px' }}>
+          E
+        </div>
+
+        {/* N - right side, middle-lower */}
+        <div className="absolute top-2/3 right-1/3 font-semibold text-black select-none leading-none" style={{ fontSize: '50px' }}>
+          N
+        </div>
+
+        {/* D - bottom right */}
+        <div className="absolute bottom-20 right-16 font-semibold text-black select-none leading-none" style={{ fontSize: '50px' }}>
+          D
         </div>
       </div>
-    </section>
-  );
+
+    </main>
+  )
 }

@@ -1,16 +1,13 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
+import type { Metadata } from 'next'
+import { Oswald } from 'next/font/google'
+import './globals.css'
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
+const oswald = Oswald({
+  variable: '--font-oswald',
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+})
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://desgincode.com"),
@@ -56,9 +53,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-neutral-100 dark:bg-black`}
-      >
+      <body className={`${oswald.variable} antialiased`} style={{ fontFamily: 'var(--font-oswald), sans-serif' }}>
         {children}
       </body>
     </html>
