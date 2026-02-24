@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="48" height="45.785" viewBox="0 0 48 45.785">
+  <g id="facebook_icon" transform="translate(-148 -45)">
+    <path id="facebook_icon-2" data-name="facebook_icon" d="M7.94,5.549v2.96h4.054c-.161,2.272-.5,4.347-.5,4.347H7.922V25.722H2.595V12.855H0V8.526H2.595V4.987C2.595,4.341,2.463.006,8.054,0H12V4.508H9.094A1.259,1.259,0,0,0,7.94,5.549" transform="translate(166 55)" fill="#898989"/>
+    <rect id="facebook_icon_tap_area" data-name="facebook_icon tap area" width="48" height="45.785" transform="translate(148 45)" fill="none"/>
+  </g>
+</svg>
