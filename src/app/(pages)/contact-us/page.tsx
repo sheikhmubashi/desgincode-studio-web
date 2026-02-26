@@ -36,20 +36,24 @@ export default async function ContactUsPage() {
         </div>
       )}
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+      <div className="grid grid-cols-1 gap-12">
         {/* Contact Details */}
         <div className="space-y-6">
           {data?.address && (
             <div>
-              <p className="body-text text-[18px] leading-[28px] whitespace-pre-line">{data.address}</p>
+              <p className="body-text text-[16px] md:text-2xl font-body whitespace-pre-line text-[#2E2E2E]">
+                {data.address}
+              </p>
             </div>
           )}
           {data?.email && (
             <div>
-              <h3 className="heading-page text-[20px] leading-[30px] mb-1">Email</h3>
+              <h3 className="heading-page text-[16px] leading-[24px] mb-1 uppercase tracking-wider text-gray-500">
+                Email
+              </h3>
               <a
                 href={`mailto:${data.email}`}
-                className="body-text text-[18px] leading-[28px] hover:opacity-60 transition-opacity"
+                className="body-text text-[16px] leading-[24px] hover:opacity-60 transition-opacity text-gray-700"
               >
                 {data.email}
               </a>
@@ -57,10 +61,12 @@ export default async function ContactUsPage() {
           )}
           {data?.phone && (
             <div>
-              <h3 className="heading-page text-[20px] leading-[30px] mb-1">Phone</h3>
+              <h3 className="heading-page text-[16px] leading-[24px] mb-1 uppercase tracking-wider text-gray-500">
+                Phone
+              </h3>
               <a
                 href={`tel:${data.phone}`}
-                className="body-text text-[18px] leading-[28px] hover:opacity-60 transition-opacity"
+                className="body-text text-[16px] leading-[24px] hover:opacity-60 transition-opacity text-gray-700"
               >
                 {data.phone}
               </a>
@@ -68,19 +74,33 @@ export default async function ContactUsPage() {
           )}
         </div>
 
-        {/* Google Map */}
-        <div>
-          {data?.mapEmbedUrl && (
+        {/* Google Map - Exactly like screenshot */}
+        <div className="w-full">
+          {data?.mapEmbedUrl ? (
             <iframe
               src={data.mapEmbedUrl}
               width="100%"
-              height="400"
-              className="border-0 w-full"
+              height="500"
+              style={{
+                border: 0,
+                width: '100%',
+                height: '500px',
+                filter: 'grayscale(100%)'
+              }}
               allowFullScreen
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
             />
+          ) : (
+            <div className="w-full h-[300px] bg-gray-100 flex items-center justify-center">
+              <p className="text-gray-400 text-sm">Google Maps API</p>
+            </div>
           )}
+
+          {/* Google Maps Attribution */}
+          <div className="text-xs text-gray-400 mt-1 text-right">
+            Google Maps API
+          </div>
         </div>
       </div>
     </div>
