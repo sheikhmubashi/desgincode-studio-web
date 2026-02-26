@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import React from 'react'
 import { Oswald, Roboto_Condensed } from 'next/font/google'
 import './globals.css'
 import { SanityLive } from '@/sanity/lib/live'
