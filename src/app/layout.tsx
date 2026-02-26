@@ -1,11 +1,18 @@
 import type { Metadata } from 'next'
-import { Oswald } from 'next/font/google'
+import { Oswald, Roboto_Condensed } from 'next/font/google'
 import './globals.css'
+import { SanityLive } from '@/sanity/lib/live'
 
 const oswald = Oswald({
   variable: '--font-oswald',
   subsets: ['latin'],
   weight: ['400', '500', '600', '700'],
+})
+
+const robotoCondensed = Roboto_Condensed({
+  variable: '--font-roboto-condensed',
+  subsets: ['latin'],
+  weight: ['200', '300', '400', '500', '600', '700',],
 })
 
 
@@ -53,9 +60,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${oswald.variable} antialiased`} style={{ fontFamily: 'var(--font-oswald), sans-serif' }}>
+      <body className={`${oswald.className} ${robotoCondensed.variable} antialiased`}>
         {children}
+        <SanityLive />
       </body>
-    </html>
+    </html >
   );
 }
