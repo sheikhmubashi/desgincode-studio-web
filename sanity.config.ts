@@ -1,4 +1,9 @@
-import React from "react"; // ← YEH IMPORT ADD KARO!
+"use client";
+
+/**
+ * This configuration is used to for the Sanity Studio that’s mounted on the `\src\app\admin\[[...tool]]\page.tsx` route
+ */
+
 import { visionTool } from "@sanity/vision";
 import { defineConfig } from "sanity";
 import { structureTool } from "sanity/structure";
