@@ -3,7 +3,6 @@ import { navigation } from "./navigation";
 import { footer } from "./footer";
 import { aboutPage } from "./aboutPage";
 import { architecturePage } from "./architecturePage";
-import { interiorsPage } from "./interiorsPage";
 import { peoplePage } from "./peoplePage";
 import { contactPage } from "./contactPage";
 import { newsPost } from "./newsPost";
@@ -14,7 +13,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
   navigation,
   footer,
   aboutPage,
-  // architecturePage,
+  architecturePage,
   // interiorsPage,
   peoplePage,
   contactPage,
