@@ -12,7 +12,7 @@ export default async function NewsPage() {
   const posts = await getNewsPosts()
 
   return (
-    <div className="max-w-7xl mx-auto px-6 lg:px-12 py-10">
+    <div className="max-w-7xl mx-auto px-6 lg:px-12 py-10 min-h-screen">
 
       <section className="mb-10">
         <h1 className="heading-page mb-5">News</h1>

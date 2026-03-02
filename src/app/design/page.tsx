@@ -14,7 +14,7 @@ export default function DesignPage() {
           {/* Logo at the top */}
           <div>
             <Link href="/">
-              <Image src={"/logo.svg"} alt='logo' width={128} height={120} className="cursor-pointer transition-transform hover:scale-110" />
+              <Image src={"/logo.svg"} alt='logo' width={128} height={120} className="cursor-pointer" />
             </Link>
             <h1 className="text-2xl font-medium text-black mb-8 tracking-wider leading-tight text-center">
               DESIGN CODE
@@ -22,9 +22,9 @@ export default function DesignPage() {
           </div>
           {/* Enter Button */}
           <Link href="/navigation">
-            <button className="group cursor-pointer mt-10 bg-white border-0 relative min-w-40 py-2 border-black text-black overflow-hidden transition-all duration-300 hover:bg-black hover:text-white">
+            <button className="group lg:w-[174px] md:text-lg cursor-pointer mt-10 bg-white border-0 relative min-w-40 py-2 border-black text-black overflow-hidden">
               <span className="relative z-10">Enter</span>
-              <div className="absolute inset-0 bg-black transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
+
             </button>
           </Link>
         </div>

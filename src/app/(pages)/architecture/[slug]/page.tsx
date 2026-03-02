@@ -46,7 +46,7 @@ export default async function ProjectPage({
 
       {/* Breadcrumb - ARCHITECTURE > RESIDENCES */}
       <div className="mb-6">
-        <p className="font-oswald font-semibold text-5xl leading-[71px] mb-8 text-black">
+        <p className="font-oswald lg:text-5xl text-2xl font-semibold lg:leading-[71px] mb-8 text-black">
           <Link href="/architecture" className="hover:underline">ARCHITECTURE</Link>
           {' > '}{project.title}
         </p>
@@ -55,7 +55,7 @@ export default async function ProjectPage({
       {/* Intro Text - Roboto Condensed 24px/32px */}
       {project.description && (
         <div className="mb-12 max-w-4xl">
-          <p className="font-roboto-condensed font-normal text-2xl leading-8 text-[#2E2E2E]">
+          <p className="font-body md:text-2xl text-lg sm:text-xl mb-6 text-[#2E2E2E] last:mb">
             {project.description}
           </p>
         </div>
@@ -64,15 +64,14 @@ export default async function ProjectPage({
 
       {/* Content */}
       {project.content && (
-        <div className="prose prose-lg max-w-4xl mb-16 font-roboto-condensed">
+        <div className="prose prose-lg mb-10 font-body md:text-2xl text-lg sm:text-xl text-[#2E2E2E] last:mb">
           <PortableText value={project.content} />
         </div>
       )}
 
       {/* Images Array */}
       {project.images && project.images.length > 0 && (
-        <section className="mb-16">
-          <h2 className="font-oswald font-semibold text-2xl mb-6">Gallery</h2>
+        <section className="mb-10">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {project.images.map((image: any, index: number) => (
               <div key={index} className="overflow-hidden">
@@ -88,17 +87,6 @@ export default async function ProjectPage({
           </div>
         </section>
       )}
-
-      {/* Back Button */}
-      <div className="mt-12">
-        <Link
-          href="/architecture"
-          className="inline-flex items-center text-sm uppercase tracking-wider text-gray-600 hover:text-black transition-colors"
-        >
-          ← Back to Architecture
-        </Link>
-      </div>
-
     </div>
   )
 }

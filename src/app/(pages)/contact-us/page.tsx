@@ -12,10 +12,10 @@ export default async function ContactUsPage() {
   const data = await getContactPage()
 
   return (
-    <div className="max-w-7xl mx-auto px-6 lg:px-12 py-10">
+    <div className="max-w-7xl mx-auto px-4 lg:px-12 py-10">
 
       <section className="mb-6">
-        <h1 className="heading-page mb-5">
+        <h1 className="heading-page text-2xl lg:text-5xl mb-5">
           {data?.pageTitle ?? 'Contact Us'}
         </h1>
         {data?.intro && (
@@ -25,7 +25,7 @@ export default async function ContactUsPage() {
 
       {/* Banner Image - Now after the heading */}
       {data?.bannerImage && (
-        <div className="relative w-full h-[300px] md:h-[400px] mb-10">
+        <div className="relative w-full h-[200px] md:h-[400px] mb-10">
           <Image
             src={urlFor(data.bannerImage).url()}
             alt={data.bannerImage.alt || 'Contact Us Banner'}

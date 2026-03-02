@@ -15,7 +15,7 @@ export default async function AboutUs() {
 
       {/* ── ABOUT US ── */}
       <section className="mb-10">
-        <h1 className="heading-page mb-5">
+        <h1 className="heading-page text-2xl lg:text-5xl mb-5">
           {data?.aboutTitle ?? 'About Us'}
         </h1>
 
@@ -38,21 +38,21 @@ export default async function AboutUs() {
 
       {/* ── OUR SERVICES ── */}
       <section className="mb-10">
-        <h2 className="heading-page mb-4">
+        <h2 className="heading-page text-2xl lg:text-5xl mb-4">
           {data?.servicesTitle ?? 'Our Services'}
         </h2>
         {data?.servicesBody && (
-          <p className="font-body md:text-2xl sm:text-xl text-[#2E2E2E]">{data.servicesBody}</p>
+          <p className="font-body md:text-2xl text-lg text-[#2E2E2E]">{data.servicesBody}</p>
         )}
       </section>
 
       {/* ── OUR DESIGN APPROACH ── */}
       <section className="mb-10">
-        <h2 className="heading-page mb-4">
+        <h2 className="heading-page text-2xl lg:text-5xl mb-4">
           {data?.approachTitle ?? 'Our Design Approach'}
         </h2>
         {data?.approachParagraphs?.map((paragraph, i) => (
-          <p key={i} className="font-body md:text-2xl sm:text-xl mb-6 text-[#2E2E2E] last:mb-0">
+          <p key={i} className="font-body md:text-2xl text-lg sm:text-xl mb-6 text-[#2E2E2E] last:mb-0">
             {paragraph}
           </p>
         ))}

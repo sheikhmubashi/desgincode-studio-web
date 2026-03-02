@@ -11,10 +11,10 @@ export default async function InteriorsPage() {
   const data = await getInteriorsPage()
 
   return (
-    <div className="max-w-7xl mx-auto px-6 lg:px-12 py-10">
+    <div className="max-w-7xl mx-auto px-6 lg:px-12 py-10 min-h-screen">
 
       <section className="mb-10">
-        <h1 className="heading-page mb-5">
+        <h1 className="heading-page mb-5 lg:text-5xl text-2xl">
           {data?.pageTitle ?? 'Interiors'}
         </h1>
 

@@ -17,7 +17,7 @@ export default function NavigationPage() {
     <FadeTransition>
       <main className="min-h-screen bg-white relative max-w-7xl mx-auto">
         {/* Logo at the top left */}
-        <div className="absolute top-8 left-4">
+        <div className="absolute top-10 left-4">
           <Link href="/">
             <Image src={"/logo.svg"} alt='logo' width={60} height={60} className="cursor-pointer" />
           </Link>

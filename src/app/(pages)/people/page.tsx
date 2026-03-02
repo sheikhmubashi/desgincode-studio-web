@@ -12,7 +12,7 @@ export default async function PeoplePage() {
   const data = await getPeoplePage()
 
   return (
-    <div className="max-w-7xl mx-auto px-6 lg:px-12 py-10">
+    <div className="max-w-7xl mx-auto px-6 lg:px-12 pt-10 pb-10 lg:pb-20">
 
       {/* Team Members */}
       {data?.team && data.team.length > 0 && (
@@ -22,7 +22,7 @@ export default async function PeoplePage() {
               <div key={i} className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
 
                 {/* Text Content - Left Side - Increased width */}
-                <div className="flex flex-col order-2 lg:order-1 w-full">
+                <div className="flex flex-col lg:w-[766px] w-full">
                   {/* Role - First as in screenshot */}
                   {member.role && (
                     <h2 className="heading-page mb-1">
@@ -52,7 +52,7 @@ export default async function PeoplePage() {
                 {/* Image - Right Side - Full right alignment */}
                 {member.image?.asset?.url && (
                   <div className="order-1 lg:order-2 flex justify-end">
-                    <div className="overflow-hidden w-80 h-80 lg:w-auto lg:h-auto lg:max-w-full">
+                    <div className="overflow-hidden w-[372px] h-[314px] lg:w-auto lg:h-auto lg:max-w-full">
                       <Image
                         src={urlFor(member.image).url()}
                         alt={member.image.alt ?? member.name ?? ''}

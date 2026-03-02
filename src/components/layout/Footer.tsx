@@ -23,7 +23,7 @@ export default async function Footer() {
 
   return (
     <footer>
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
+      <div className="max-w-7xl mx-auto px-6 lg:px-12 min-h-[100px]">
         <div className="flex flex-col md:flex-row justify-between items-center h-auto md:h-20 py-4 md:py-0">
 
           {/* Social Links */}
