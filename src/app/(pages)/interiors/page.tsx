@@ -48,19 +48,20 @@ export default async function InteriorsPage() {
           </section>
 
           {/* Mobile Layout (stacked) */}
-          <section className="xl:hidden flex flex-col gap-8 w-full mt-10">
-            {project.images?.slice(0, 4).map((image: any, index: number) => (
+          <section className="xl:hidden flex flex-col gap-8 w-full mt-10 ">
+            {[0, 1, 2, 3].map((image: any, index: number) => (
               <article key={index} className="w-full">
-                <div className="relative w-full h-[300px] md:h-[400px] bg-[#7F7F7F] block mt-8">
-                  {image?.asset?.url && (
-                    <Image
-                      src={image.asset.url}
-                      alt={image.alt || project.title || ''}
-                      fill
-                      className="object-cover"
-                    />
-                  )}
-                </div>
+                {image?.asset?.url ? (
+                  <Image
+                    src={image.asset.url}
+                    alt={image.alt || project.title || ''}
+                    width={800}
+                    height={400}
+                    className="w-full h-auto object-cover bg-[#7F7F7F]"
+                  />
+                ) : (
+                  <div className="w-full h-[300px] bg-[#7F7F7F]"></div>
+                )}
                 {/* Optional Text block below corresponding bottom-left image (index 2) */}
                 {index === 2 && (project.title || project.location) && (
                   <div className="mt-6">
@@ -99,7 +100,7 @@ export default async function InteriorsPage() {
                       />
                     </div>
                   ) : (
-                    <div className="w-full h-full bg-[#7F7F7F]"></div>
+                    <div className="w-full h-[300px] md:h-full bg-[#7F7F7F] block"></div>
                   )}
 
                   {/* Optional Text block below corresponding bottom-left image (index 2) */}
