@@ -6,6 +6,7 @@ import { architecturePage } from "./architecturePage";
 import { peoplePage } from "./peoplePage";
 import { contactPage } from "./contactPage";
 import { newsPost } from "./newsPost";
+import { interiorsPage } from "./interiorsPage";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
  types: [
@@ -14,7 +15,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
   footer,
   aboutPage,
   architecturePage,
-  // interiorsPage,
+  interiorsPage,
   peoplePage,
   contactPage,
   // Multi-document

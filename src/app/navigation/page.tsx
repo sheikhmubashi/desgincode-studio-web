@@ -16,15 +16,15 @@ export default function NavigationPage() {
   return (
     <FadeTransition>
       <main className="min-h-screen bg-white relative max-w-7xl mx-auto">
-        {/* Logo at the top left */}
-        <div className="absolute top-10 left-4">
+        {/* Logo at the top left - adjusted positioning */}
+        <div className="absolute top-6 left-4 z-10">
           <Link href="/">
             <Image src={"/logo.svg"} alt='logo' width={60} height={60} className="cursor-pointer" />
           </Link>
         </div>
 
-        {/* Navigation Menu - Left aligned */}
-        <div className="flex flex-col justify-center min-h-screen px-4">
+        {/* Navigation Menu - Left aligned with less top padding */}
+        <div className="flex flex-col pt-32 min-h-screen px-4 ">
           <nav className="space-y-0.5">
             {navItems.map((item, index) => (
               <Link

@@ -10,7 +10,7 @@ export default function Home() {
 
         {/* Click Button - Top Left */}
         <Link href="/design">
-          <div className="flex items-center mt-6 md:mt-10 ms-6 md:ms-10 gap-6 md:gap-10 cursor-pointer group">
+          <div className="flex items-center mt-6 md:mt-10 ms-6 md:ms-10 gap-2 md:gap-10 cursor-pointer group">
             <Image
               src={"/logo.svg"}
               alt='logo'
@@ -18,55 +18,60 @@ export default function Home() {
               height={40}
               className="md:w-[60px] md:h-[60px] "
             />
-            <span className='text-sm md:text-lg font-medium font-serif transition-colors duration-300 group-hover:text-gray-600'>{'< Click'}</span>
+            <span className='text-sm md:text-lg font-medium font-serif transition-colors duration-300 group-hover:text-gray-600 font-heading'>{'< Click'}</span>
           </div>
         </Link>
 
         {/* Mobile Layout - Scaled down scattered letters for mobile */}
         <div className="md:hidden relative w-full h-screen">
-          {/* D - Top Left */}
+          {/* D */}
           <Link href="/design">
-            <div className="absolute top-20 left-6 font-semibold text-black select-none leading-none transition-transform duration-300 hover:scale-125 cursor-pointer" style={{ fontSize: '32px' }}>D</div>
+            <div className="absolute top-[18%] left-[10%] font-semibold text-black select-none leading-none transition-transform duration-300 hover:scale-125 cursor-pointer" style={{ fontSize: '32px' }}>D</div>
           </Link>
 
           {/* E */}
           <Link href="/design">
-            <div className="absolute top-40 left-12 font-semibold text-black select-none leading-none transition-transform duration-300 hover:scale-125 cursor-pointer" style={{ fontSize: '32px' }}>E</div>
+            <div className="absolute top-[28%] left-[25%] font-semibold text-black select-none leading-none transition-transform duration-300 hover:scale-125 cursor-pointer" style={{ fontSize: '32px' }}>E</div>
           </Link>
 
           {/* S */}
           <Link href="/design">
-            <div className="absolute top-56 left-8 font-semibold text-black select-none leading-none transition-transform duration-300 hover:scale-125 cursor-pointer" style={{ fontSize: '32px' }}>S</div>
+            <div className="absolute top-[38%] left-[15%] font-semibold text-black select-none leading-none transition-transform duration-300 hover:scale-125 cursor-pointer" style={{ fontSize: '32px' }}>S</div>
           </Link>
 
           {/* I */}
           <Link href="/design">
-            <div className="absolute top-64 right-20 font-semibold text-black select-none leading-none transition-transform duration-300 hover:scale-125 cursor-pointer" style={{ fontSize: '32px' }}>I</div>
+            <div className="absolute top-[35%] right-[25%] font-semibold text-black select-none leading-none transition-transform duration-300 hover:scale-125 cursor-pointer" style={{ fontSize: '32px' }}>I</div>
           </Link>
 
           {/* G */}
           <Link href="/design">
-            <div className="absolute top-72 left-1/3 transform -translate-x-1/2 font-semibold text-black select-none leading-none transition-transform duration-300 hover:scale-125 cursor-pointer" style={{ fontSize: '32px' }}>G</div>
+            <div className="absolute top-[48%] left-[35%] font-semibold text-black select-none leading-none transition-transform duration-300 hover:scale-125 cursor-pointer" style={{ fontSize: '32px' }}>G</div>
+          </Link>
+
+          {/* C */}
+          <Link href="/design">
+            <div className="absolute top-[52%] right-[20%] font-semibold text-black select-none leading-none transition-transform duration-300 hover:scale-125 cursor-pointer" style={{ fontSize: '32px' }}>C</div>
           </Link>
 
           {/* N */}
           <Link href="/design">
-            <div className="absolute top-80 left-16 font-semibold text-black select-none leading-none transition-transform duration-300 hover:scale-125 cursor-pointer" style={{ fontSize: '32px' }}>N</div>
+            <div className="absolute top-[62%] left-[25%] font-semibold text-black select-none leading-none transition-transform duration-300 hover:scale-125 cursor-pointer" style={{ fontSize: '32px' }}>N</div>
           </Link>
 
-          {/* I - Right side */}
+          {/* O */}
           <Link href="/design">
-            <div className="absolute top-96 right-16 font-semibold text-black select-none leading-none transition-transform duration-300 hover:scale-125 cursor-pointer" style={{ fontSize: '32px' }}>I</div>
+            <div className="absolute top-[70%] right-[40%] font-semibold text-black select-none leading-none transition-transform duration-300 hover:scale-125 cursor-pointer" style={{ fontSize: '32px' }}>O</div>
           </Link>
 
-          {/* E - Right side lower */}
+          {/* D */}
           <Link href="/design">
-            <div className="absolute bottom-40 right-12 font-semibold text-black select-none leading-none transition-transform duration-300 hover:scale-125 cursor-pointer" style={{ fontSize: '32px' }}>E</div>
+            <div className="absolute top-[82%] left-[15%] font-semibold text-black select-none leading-none transition-transform duration-300 hover:scale-125 cursor-pointer" style={{ fontSize: '32px' }}>D</div>
           </Link>
 
-          {/* D - Bottom */}
+          {/* E */}
           <Link href="/design">
-            <div className="absolute bottom-24 left-12 font-semibold text-black select-none leading-none transition-transform duration-300 hover:scale-125 cursor-pointer" style={{ fontSize: '32px' }}>D</div>
+            <div className="absolute top-[80%] right-[20%] font-semibold text-black select-none leading-none transition-transform duration-300 hover:scale-125 cursor-pointer" style={{ fontSize: '32px' }}>E</div>
           </Link>
         </div>
 
@@ -103,7 +108,7 @@ export default function Home() {
           {/* E - Center */}
           <Link href="/design">
             <div className="absolute top-1/2 left-[45%] transform -translate-x-1/2 font-semibold text-black select-none leading-none transition-transform duration-300 hover:scale-150 cursor-pointer" style={{ fontSize: '50px' }}>
-              E
+              C
             </div>
           </Link>
 

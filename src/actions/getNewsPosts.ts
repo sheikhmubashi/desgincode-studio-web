@@ -2,25 +2,17 @@ import { sanityFetch } from "@/sanity/lib/live";
 import { defineQuery } from "next-sanity";
 
 const NEWS_POSTS_QUERY = defineQuery(`
-  *[_type == "newsPost"] | order(publishedAt desc) {
+  *[_type == "newsPost"] | order(_createdAt desc) {
     _id,
     title,
-    slug,
-    publishedAt,
-    heroImage { asset->{ url }, alt },
-    excerpt,
-    category
+    content
   }
 `);
 
 export type NewsPostSummary = {
  _id: string;
  title: string | null;
- slug: { current: string } | null;
- publishedAt: string | null;
- heroImage: { asset: { url: string }; alt?: string } | null;
- excerpt: string | null;
- category: string | null;
+ content: string | null;
 };
 
 export async function getNewsPosts(): Promise<NewsPostSummary[]> {

@@ -52,22 +52,25 @@ export default function MainHeader() {
       </div>
 
       {/* Mobile Navigation */}
-      {isMenuOpen && (
-        <nav className="lg:hidden border-t border-gray-200">
-          <div className="max-w-7xl mx-auto px-6 py-4 flex flex-col gap-1">
-            {navItems.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="nav-link transition-opacity duration-200 hover:opacity-50 block py-1"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                {item.label}
-              </Link>
-            ))}
-          </div>
-        </nav>
-      )}
+      <nav
+        className={`lg:hidden border-t border-gray-200 absolute w-full left-0 bg-white z-50 transition-all duration-300 ease-in-out overflow-hidden ${isMenuOpen ? 'max-h-dvh opacity-100 min-h-dvh' : 'max-h-0 opacity-0 min-h-0'
+          }`}
+      >
+        <div className="max-w-7xl mx-auto px-6 py-6 flex flex-col space-y-0.5">
+          {navItems.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className={`nav-link transition-all duration-300 hover:opacity-50 block leading-none ${isMenuOpen ? 'translate-y-0 opacity-100' : '-translate-y-4 opacity-0'
+                }`}
+              style={{ transitionDelay: isMenuOpen ? '100ms' : '0ms' }}
+              onClick={() => setIsMenuOpen(false)}
+            >
+              {item.label}
+            </Link>
+          ))}
+        </div>
+      </nav>
     </header>
   )
 }

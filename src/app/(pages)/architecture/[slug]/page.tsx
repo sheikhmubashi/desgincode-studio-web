@@ -41,8 +41,23 @@ export default async function ProjectPage({
     notFound()
   }
 
+  const getStyle = (index: number) => {
+    switch (index) {
+      case 0:
+        return { top: '0px', left: '0px', width: '570px', height: '380px' };
+      case 1:
+        return { top: '190px', left: '594px', width: '536px', height: '357px' };
+      case 2:
+        return { top: '416px', left: '0px', width: '470px', height: '704px' };
+      case 3:
+        return { top: '930px', left: '495px', width: '570px', height: '380px' };
+      default:
+        return { display: 'none' };
+    }
+  };
+
   return (
-    <div className="max-w-7xl mx-auto px-6 lg:px-12 py-10 min-h-screen">
+    <div className="max-w-7xl mx-auto px-4 lg:px-12 py-10 pb-20 pt-10 relative">
 
       {/* Breadcrumb - ARCHITECTURE > RESIDENCES */}
       <div className="mb-6">
@@ -71,21 +86,50 @@ export default async function ProjectPage({
 
       {/* Images Array */}
       {project.images && project.images.length > 0 && (
-        <section className="mb-10">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {project.images.map((image: any, index: number) => (
-              <div key={index} className="overflow-hidden">
-                <Image
-                  src={image.asset.url}
-                  alt={image.alt ?? `${project.title} - Image ${index + 1}`}
-                  width={800}
-                  height={600}
-                  className="w-full object-cover"
-                />
-              </div>
+        <>
+          {/* Mobile Layout (stacked) */}
+          <section className="xl:hidden flex flex-col gap-8 w-full mt-10">
+            {project.images?.slice(0, 4).map((image: any, index: number) => (
+              <article key={index} className="w-full flex flex-col">
+                <div className="relative w-full aspect-[4/3] bg-[#7F7F7F]">
+                  {image?.asset?.url && (
+                    <Image
+                      src={image.asset.url}
+                      alt={image.alt || project.title || ''}
+                      fill
+                      className="object-cover"
+                    />
+                  )}
+                </div>
+              </article>
             ))}
-          </div>
-        </section>
+          </section>
+
+          {/* Desktop Layout (Grid Collage) */}
+          <section className="hidden xl:block relative w-full h-[1400px]">
+            {[0, 1, 2, 3].map((index) => {
+              const style = getStyle(index);
+              if (style.display === 'none') return null;
+
+              return (
+                <article key={index} className="absolute inline-block" style={style}>
+                  {project.images?.[index]?.asset?.url ? (
+                    <div className="w-full h-full relative bg-[#7F7F7F]">
+                      <Image
+                        src={project.images[index].asset.url}
+                        alt={project.images[index].alt || project.title || ''}
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                  ) : (
+                    <div className="w-full h-full bg-[#7F7F7F]"></div>
+                  )}
+                </article>
+              );
+            })}
+          </section>
+        </>
       )}
     </div>
   )

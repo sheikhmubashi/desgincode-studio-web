@@ -12,18 +12,6 @@ export const interiorsPage = defineType({
    initialValue: "Interiors",
   }),
   defineField({
-   name: "heroImage",
-   title: "Hero Banner Image",
-   type: "image",
-   options: { hotspot: true },
-  }),
-  defineField({
-   name: "intro",
-   title: "Introduction Text",
-   type: "text",
-   rows: 4,
-  }),
-  defineField({
    name: "projects",
    title: "Projects",
    type: "array",
@@ -35,10 +23,15 @@ export const interiorsPage = defineType({
      fields: [
       defineField({ name: "title", title: "Project Title", type: "string" }),
       defineField({
-       name: "image",
-       title: "Project Image",
-       type: "image",
-       options: { hotspot: true },
+       name: "images",
+       title: "Project Images",
+       type: "array",
+       of: [
+        {
+         type: "image",
+         options: { hotspot: true },
+        },
+       ],
       }),
       defineField({
        name: "description",
@@ -46,11 +39,22 @@ export const interiorsPage = defineType({
        type: "text",
        rows: 3,
       }),
-      defineField({ name: "year", title: "Year", type: "string" }),
-      defineField({ name: "location", title: "Location", type: "string" }),
+      defineField({
+       name: "location",
+       title: "Location",
+       type: "text",
+       rows: 2,
+      }),
      ],
      preview: {
-      select: { title: "title", subtitle: "location", media: "image" },
+      select: { title: "title", subtitle: "location", images: "images" },
+      prepare({ title, subtitle, images }) {
+       return {
+        title,
+        subtitle,
+        media: images && images.length > 0 ? images[0] : null,
+       };
+      },
      },
     },
    ],

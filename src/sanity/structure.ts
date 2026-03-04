@@ -40,12 +40,12 @@ export const structure: StructureResolver = (S) =>
      S.document().schemaType("architecturePage").documentId("architecturePage"),
     ),
 
-   //  S.listItem()
-   //   .title("Interiors Page")
-   //   .id("interiorsPage")
-   //   .child(
-   //    S.document().schemaType("interiorsPage").documentId("interiorsPage"),
-   //   ),
+   S.listItem()
+    .title("Interiors Page")
+    .id("interiorsPage")
+    .child(
+     S.document().schemaType("interiorsPage").documentId("interiorsPage"),
+    ),
 
    S.listItem()
     .title("People Page")
