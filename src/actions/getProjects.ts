@@ -45,15 +45,15 @@ const PROJECT_BY_SLUG_QUERY = defineQuery(`
 
 export type ProjectCard = {
  title: string;
- slug: string;any; alt?: string } | null;
+ slug: string;
+ mainImage: { asset: any; alt?: string } | null;
 };
 
 export type ProjectDetail = {
  title: string;
  slug: string;
  mainImage: { asset: any; alt?: string } | null;
- images: { asset: any; alt?: string; _keyalt?: string } | null;
- images: { asset: { url: string }; alt?: string }[] | null;
+ images: { asset: any; alt?: string; _key?: string }[] | null;
  content: any | null;
 };
 
