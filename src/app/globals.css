@@ -9,7 +9,6 @@
  --color-foreground: var(--foreground);
  --font-sans: var(--font-geist-sans);
  /* Custom font families */
- --font-oswald: var(---font-oswald)
  --font-heading: var(--font-oswald), sans-serif;
  --font-body: var(--font-roboto-condensed), sans-serif;
  --font-mono: var(--font-geist-mono);

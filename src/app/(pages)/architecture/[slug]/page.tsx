@@ -96,7 +96,7 @@ export default async function ProjectPage({
         <div className="relative w-full aspect-[4/3] bg-[#7F7F7F]">
          {image?.asset?.url && (
           <Image
-           src={image.asset.url}
+           src={urlFor(image.asset.url).url()}
            alt={image.alt || project.title || ""}
            fill
            className="object-cover"
