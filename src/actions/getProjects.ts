@@ -10,12 +10,13 @@ const ARCHITECTURE_PAGE_QUERY = defineQuery(`
       title,
       "slug": slug.current,
       mainImage {
-        asset->{ url },
+        asset,
         alt
       },
       images[] {
-        asset->{ url },
-        alt
+        asset,
+        alt,
+        _key
       },
       content
     }
@@ -29,12 +30,13 @@ const PROJECT_BY_SLUG_QUERY = defineQuery(`
       title,
       "slug": slug.current,
       mainImage {
-        asset->{ url },
+        asset,
         alt
       },
       images[] {
-        asset->{ url },
-        alt
+        asset,
+        alt,
+        _key
       },
       content
     }
@@ -43,14 +45,14 @@ const PROJECT_BY_SLUG_QUERY = defineQuery(`
 
 export type ProjectCard = {
  title: string;
- slug: string;
- mainImage: { asset: { url: string }; alt?: string } | null;
+ slug: string;any; alt?: string } | null;
 };
 
 export type ProjectDetail = {
  title: string;
  slug: string;
- mainImage: { asset: { url: string }; alt?: string } | null;
+ mainImage: { asset: any; alt?: string } | null;
+ images: { asset: any; alt?: string; _keyalt?: string } | null;
  images: { asset: { url: string }; alt?: string }[] | null;
  content: any | null;
 };

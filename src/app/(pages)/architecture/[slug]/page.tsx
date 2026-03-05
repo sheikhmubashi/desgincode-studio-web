@@ -6,6 +6,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getProjectBySlug } from "@/actions/getProjects";
 import { PortableText } from "next-sanity";
+import { urlFor } from "@/sanity/lib/image";
 
 export async function generateMetadata({
  params,
@@ -92,11 +93,11 @@ export default async function ProjectPage({
      {/* Mobile Layout (stacked) */}
      <section className="xl:hidden flex flex-col gap-8 w-full mt-10">
       {project.images?.slice(0, 4).map((image: any, index: number) => (
-       <article key={index} className="w-full flex flex-col">
+       <article key={image._key || index} className="w-full flex flex-col">
         <div className="relative w-full aspect-[4/3] bg-[#7F7F7F]">
-         {image?.asset?.url && (
+         {image?.asset && (
           <Image
-           src={image.asset.url}
+           src={urlFor(image.asset).url()}
            alt={image.alt || project.title || ""}
            fill
            className="object-cover"
@@ -115,10 +116,10 @@ export default async function ProjectPage({
 
        return (
         <article key={index} className="absolute inline-block" style={style}>
-         {project.images?.[index]?.asset?.url ? (
+         {project.images?.[index]?.asset ? (
           <div className="w-full h-full relative bg-[#7F7F7F]">
            <Image
-            src={project.images[index].asset.url}
+            src={urlFor(project.images[index].asset).url()}
             alt={project.images[index].alt || project.title || ""}
             fill
             className="object-cover"
