@@ -1,11 +1,11 @@
 // app/architecture/[slug]/page.tsx
+import React from "react";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { PortableText } from "@portabletext/react";
 import { getProjectBySlug } from "@/actions/getProjects";
-import { urlFor } from "@/sanity/lib/image";
+import { PortableText } from "next-sanity";
 
 export async function generateMetadata({
  params,
@@ -96,7 +96,7 @@ export default async function ProjectPage({
         <div className="relative w-full aspect-[4/3] bg-[#7F7F7F]">
          {image?.asset?.url && (
           <Image
-           src={urlFor(image.asset.url).url()}
+           src={image.asset.url}
            alt={image.alt || project.title || ""}
            fill
            className="object-cover"
@@ -118,7 +118,7 @@ export default async function ProjectPage({
          {project.images?.[index]?.asset?.url ? (
           <div className="w-full h-full relative bg-[#7F7F7F]">
            <Image
-            src={urlFor(project.images[index].asset.url).url()}
+            src={project.images[index].asset.url}
             alt={project.images[index].alt || project.title || ""}
             fill
             className="object-cover"
