@@ -10,7 +10,7 @@ export default function NavigationPage() {
   { name: "ARCHITECTURE", href: "/architecture" },
   { name: "INTERIORS", href: "/interiors" },
   { name: "PEOPLE", href: "/people" },
-  { name: "CONTACT US", href: "/contact" },
+  { name: "CONTACT US", href: "/contact-us" },
  ];
 
  return (
