@@ -26,7 +26,7 @@ export default function NavigationPage() {
      <nav className="space-y-0.5">
       {navItems.map((item, index) => (
        <Link key={index} href={item.href} className="group block">
-        <span className="text-4xl md:text-5xl lg:text-6xl font-semibold text-black cursor-pointer transition-colors duration-300 hover:text-gray-400">
+        <span className="text-4xl md:text-5xl lg:text-6xl font-semibold text-black cursor-pointer transition-colors duration-300 hover:text-[#C3D6D4]">
          {item.name}
         </span>
        </Link>
