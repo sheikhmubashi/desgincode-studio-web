@@ -22,8 +22,8 @@ export default async function PeoplePage() {
         key={i}
         className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-12 lg:gap-16 items-start"
        >
-        {/* Text Content - Left Side - Increased width */}
-        <div className="flex flex-col lg:w-[766px] w-full">
+        {/* Text Content - Left Side */}
+        <div className="flex flex-col w-full">
          {/* Role - First as in screenshot */}
          {member.role && (
           <h2 className="heading-page text-2xl lg:text-5xl mb-1">
@@ -50,16 +50,17 @@ export default async function PeoplePage() {
          )}
         </div>
 
-        {/* Image - Right Side - Full right alignment */}
+        {/* Image - Right Side */}
         {member.image?.asset?.url && (
          <div className="order-1 lg:order-2 flex justify-end">
-          <div className="overflow-hidden w-[372px] h-[314px] lg:w-auto lg:h-auto lg:max-w-full">
+          <div className="relative w-full max-w-[372px] lg:max-w-[600px] aspect-[4/3]">
            <Image
             src={urlFor(member.image).url()}
             alt={member.image.alt ?? member.name ?? ""}
-            width={600}
-            height={450}
-            className="w-full object-cover"
+            fill
+            className="object-cover"
+            sizes="(max-width: 768px) 372px, (max-width: 1024px) 450px, 600px"
+            priority={i === 0}
            />
           </div>
          </div>
