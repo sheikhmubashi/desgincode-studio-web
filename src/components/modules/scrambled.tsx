@@ -92,6 +92,7 @@ export default function ScrambleModule({
            fontSize: shrinkText ? "1.5rem" : isMobile ? "2rem" : "3.125rem",
           }
       }
+      whileHover={{ scale: 1.2 }}
       transition={{
        type: "spring",
        damping: 30,
