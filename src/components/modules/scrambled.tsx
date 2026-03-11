@@ -92,12 +92,12 @@ export default function ScrambleModule({
            fontSize: shrinkText ? "1.5rem" : isMobile ? "2rem" : "3.125rem",
           }
       }
-      whileHover={{ scale: 1.2 }}
+      whileHover={{ scale: 1.5 }}
       transition={{
        type: "spring",
-       damping: 30,
-       stiffness: 70,
-       duration: 1.5,
+       damping: 20,
+       stiffness: 300,
+       duration: 0.05,
       }}
       style={{
        fontSize: isScrambled ? (isMobile ? "2rem" : "3.125rem") : undefined,
