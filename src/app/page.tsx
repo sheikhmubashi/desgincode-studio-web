@@ -48,7 +48,7 @@ export default function Home() {
        : {
           position: "absolute",
           left: "50%",
-          top: "calc(50% - 150px)",
+          top: "calc(50% - 100px)",
           x: "-50%",
           y: 0,
          }
