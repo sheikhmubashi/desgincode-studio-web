@@ -18,7 +18,9 @@ export default function NavigationPage() {
    <main className="min-h-screen bg-white relative max-w-7xl mx-auto">
     {/* Logo at the top left - adjusted positioning */}
     <div className="absolute top-6 left-4 z-10">
-     <Image src={"/logo.svg"} alt="logo" width={60} height={60} />
+     <Link href="/">
+      <Image src={"/logo.svg"} alt="logo" width={60} height={60} />
+     </Link>
     </div>
 
     {/* Navigation Menu - Left aligned with less top padding */}
