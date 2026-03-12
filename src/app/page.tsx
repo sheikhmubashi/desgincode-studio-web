@@ -55,9 +55,11 @@ export default function Home() {
      }
      transition={{
       type: "spring",
-      damping: 30,
-      stiffness: 70,
-      duration: 1.5,
+      damping: 70,
+      stiffness: 150,
+      mass: 0.9,
+      restSpeed: 0.001,
+      restDelta: 0.001,
      }}
      className="z-20"
     >
@@ -68,7 +70,14 @@ export default function Home() {
          width: !isScrambled ? 128 : 60,
          height: !isScrambled ? 120 : 60,
         }}
-        transition={{ duration: 0.8, delay: 1.2 }}
+        transition={{
+         type: "spring",
+         damping: 70,
+         stiffness: 150,
+         mass: 0.9,
+         restSpeed: 0.001,
+         restDelta: 0.001,
+        }}
        >
         <Image
          src={"/logo.svg"}
@@ -92,14 +101,14 @@ export default function Home() {
     {/* Enter Button */}
     {showEnterButton && (
      <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6 }}
-      className="absolute"
-      style={{ top: "calc(50% + 80px)" }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 1.5 }}
+      className="absolute left-1/2 -translate-x-1/2"
+      style={{ top: "calc(50% + 132px)" }}
      >
       <Link href="/navigation">
-       <button className="group lg:w-[174px] md:text-lg cursor-pointer bg-white border-0 relative min-w-40 py-2 border-black text-black overflow-hidden">
+       <button className="group w-[174px] h-[40px] md:text-lg cursor-pointer bg-white border-0 relative text-black overflow-hidden">
         <span className="relative z-10">Enter</span>
        </button>
       </Link>
