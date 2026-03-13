@@ -35,58 +35,28 @@ export default function Home() {
 
     {/* Logo */}
     <motion.div
-     initial={false}
-     animate={
-      isScrambled
-       ? {
-          position: "absolute",
-          left: "1.5rem",
-          top: "1.5rem",
-          x: 0,
-          y: 0,
-         }
-       : {
-          position: "absolute",
-          left: "50%",
-          top: "calc(50% - 100px)",
-          x: "-50%",
-          y: 0,
-         }
-     }
-     transition={{
-      type: "spring",
-      damping: 70,
-      stiffness: 150,
-      mass: 0.9,
-      restSpeed: 0.001,
-      restDelta: 0.001,
+     initial={{ opacity: 0 }}
+     animate={{
+      opacity: isScrambled ? 1 : 0,
      }}
-     className="z-20"
+     transition={{
+      duration: 0.8,
+      ease: "easeInOut",
+     }}
+     className="absolute left-6 top-6 z-20"
+     style={{ pointerEvents: isScrambled ? "auto" : "none" }}
     >
      <Link href="#" onClick={handleLogoClick}>
       <div className="flex items-center gap-2 md:gap-10 cursor-pointer group">
-       <motion.div
-        animate={{
-         width: !isScrambled ? 128 : 60,
-         height: !isScrambled ? 120 : 60,
-        }}
-        transition={{
-         type: "spring",
-         damping: 70,
-         stiffness: 150,
-         mass: 0.9,
-         restSpeed: 0.001,
-         restDelta: 0.001,
-        }}
-       >
+       <div className="w-[60px] h-[60px]">
         <Image
          src={"/logo.svg"}
          alt="logo"
-         width={128}
-         height={120}
+         width={60}
+         height={60}
          className="w-full h-full object-contain"
         />
-       </motion.div>
+       </div>
        {isScrambled && (
         <span className="text-sm md:text-lg transition-colors duration-300 group-hover:text-gray-600 font-heading font-[300]">
          {"< Click"}
@@ -97,6 +67,27 @@ export default function Home() {
     </motion.div>
 
     {/* DESIGN CODE Text - appears after unscramble */}
+
+    {/* Centered Logo - appears after unscramble */}
+    {!isScrambled && (
+     <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.8, delay: 0.6 }}
+      className="absolute left-1/2 -translate-x-1/2"
+      style={{ top: "calc(50% - 97px)" }}
+     >
+      <div className="w-[128px] h-[120px]">
+       <Image
+        src={"/logo.svg"}
+        alt="logo"
+        width={128}
+        height={120}
+        className="w-full h-full object-contain"
+       />
+      </div>
+     </motion.div>
+    )}
 
     {/* Enter Button */}
     {showEnterButton && (

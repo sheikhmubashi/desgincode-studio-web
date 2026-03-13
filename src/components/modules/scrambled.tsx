@@ -136,11 +136,11 @@ export default function ScrambleModule({
       whileHover={isScrambled ? { scale: 1.1 } : undefined}
       transition={{
        type: "spring",
-       damping: 70,
-       stiffness: 150,
-       mass: 0.9,
-       restSpeed: 0.001,
-       restDelta: 0.001,
+       damping: 85,
+       stiffness: 180,
+       mass: 0.7,
+       restSpeed: 0.005,
+       restDelta: 0.005,
       }}
      >
       {letter}
