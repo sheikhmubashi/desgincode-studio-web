@@ -6,7 +6,12 @@ const INTERIORS_PAGE_QUERY = defineQuery(`
     pageTitle,
     projects[] {
       title,
-      images[] { asset->{ url }, alt },
+      category,
+      images[] {
+        asset->{ url, metadata{ dimensions{ width, height } } },
+        alt,
+        _key
+      },
       description,
       location
     }
@@ -15,7 +20,17 @@ const INTERIORS_PAGE_QUERY = defineQuery(`
 
 export type InteriorsProject = {
  title: string | null;
- images: { asset: { url: string }; alt?: string }[] | null;
+ category: string | null;
+ images:
+  | {
+     _key?: string;
+     asset: {
+      url: string;
+      metadata?: { dimensions?: { width: number; height: number } };
+     } | null;
+     alt?: string | null;
+    }[]
+  | null;
  description: string | null;
  location: string | null;
 };

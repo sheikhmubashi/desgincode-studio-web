@@ -23,6 +23,11 @@ export const interiorsPage = defineType({
      fields: [
       defineField({ name: "title", title: "Project Title", type: "string" }),
       defineField({
+       name: "category",
+       title: "Category",
+       type: "string",
+      }),
+      defineField({
        name: "images",
        title: "Project Images",
        type: "array",
