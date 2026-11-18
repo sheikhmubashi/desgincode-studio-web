@@ -1,36 +1,83 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# DesginCode Studio
 
-## Getting Started
+Marketing site for an architecture and interior-design practice in Karachi. Built with
+Next.js (App Router), Sanity CMS, Tailwind CSS v4, and Framer Motion.
 
-First, run the development server:
+## Stack
+
+- **Next.js 16** (App Router, Turbopack, React Compiler) with React 19
+- **Sanity 4** — content studio embedded at `/admin`, queried with `next-sanity`
+  Live Content API (`sanityFetch` + `<SanityLive />`)
+- **Tailwind CSS v4** (CSS-first config in `src/app/globals.css`) + shadcn/ui primitives
+- **Framer Motion** for the landing and transition animations
+
+## Getting started
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+cp .env.example .env.local   # then fill in the values
+npm run dev                  # http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Environment variables
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Variable | Required | Used by |
+| --- | --- | --- |
+| `NEXT_PUBLIC_SANITY_PROJECT_ID` | yes | app + studio |
+| `NEXT_PUBLIC_SANITY_DATASET` | yes | app + studio |
+| `NEXT_PUBLIC_SANITY_API_VERSION` | no (defaults to `2026-02-19`) | app + studio |
+| `SANITY_API_TOKEN` | scripts only | `scripts/*.mjs` (write access) |
+| `CLIENT_ASSETS_DIR` | no | `scripts/update-interiors-projects.mjs` |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Never commit `.env.local` or a `SANITY_API_TOKEN`.
 
-## Learn More
+## Scripts
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm run dev      # next dev
+npm run build    # next build
+npm run start    # next start (after build)
+npm run lint     # eslint (flat config)
+npx tsc --noEmit # typecheck
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+`scripts/*.mjs` are one-off content tools that upload assets and patch live Sanity documents.
+They require `SANITY_API_TOKEN` and should only be run deliberately.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Project structure
 
-## Deploy on Vercel
+```text
+src/
+  app/
+    layout.tsx               root layout, fonts, metadata, <SanityLive />
+    page.tsx                 animated landing (/)
+    navigation/page.tsx      full-screen menu (/navigation)
+    design/page.tsx          legacy logo screen (/design)
+    admin/[[...tool]]/       embedded Sanity Studio
+    (pages)/                 header + footer shell for public pages
+      about-us/ architecture/ architecture/[slug]/ interiors/
+      news/ people/ contact-us/
+  actions/                   server-side GROQ queries + result types
+  sanity/
+    env.ts                   validated env values
+    lib/                     client, live fetch, image URL builder
+    schemaTypes/             one schema file per document type
+    structure.ts             Studio sidebar + singleton IDs
+  components/
+    ui/                      shadcn primitives
+    layout/Footer.tsx        CMS-driven footer
+    MainHeader.tsx           header + responsive navigation
+    modules/scrambled.tsx    landing text animation
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Content editing
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Open `/admin` and edit the singleton documents: Navigation, Footer, About Us, Architecture,
+Interiors, People, Contact Us, plus News Posts. Page copy and images should be edited there,
+not in the components; components keep literal fallbacks for an empty dataset.
+
+## Notes
+
+- `AGENTS.md` documents conventions and known issues for AI coding agents.
+- `.opencode/skills/` contains project skills for Sanity changes, new pages, and reviews.
+- Deployed on Vercel; `cdn.sanity.io` is the only allowlisted remote image host.

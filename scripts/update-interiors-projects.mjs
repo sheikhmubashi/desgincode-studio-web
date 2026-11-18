@@ -30,7 +30,7 @@ if (!token) {
 const projects = [
  {
   title: "NK Residence Interiors",
-  category: "Residence Interiors",
+  category: "Residential Interior",
   location: "Karachi – 1000 sq yard private residence",
   files: [
    ["NK RESIDENCE", "HM1_5001.jpg"],
@@ -46,8 +46,15 @@ const projects = [
  },
  {
   title: "AB Interior",
-  category: "Residence Interiors",
+  category: "Residential Interior",
   location: "Emaar, Karachi – 4 Bedroom Apartment",
+  replaceImages: true,
+  files: [],
+ },
+ {
+  title: "MTU Office",
+  category: "Corporate Interior",
+  assetOwner: "AB Interior",
   files: [
    ["projectphotos2commercialinteriors\\MTU OFFICE", "Director 1 View 1.jpg"],
    ["projectphotos2commercialinteriors\\MTU OFFICE", "Director 1 view 2.jpg"],
@@ -57,7 +64,7 @@ const projects = [
  },
  {
   title: "KI Interior",
-  category: "Residence Interiors",
+  category: "Residential Interior",
   location: "Emaar, Karachi – 4 Bedroom Apartment",
   files: [
    ["KI Interiors", "LIVING ROOM - VIEW 01.jpg"],
@@ -70,19 +77,19 @@ const projects = [
  },
  {
   title: "Kasimali Residence",
-  category: "Residence Interiors",
+  category: "Residential Interior",
   location: "Karachi – 666 sq yard private residence",
   files: [[".", "77001286_1356943504430008_6723283213214547968_n.jpg.jpeg"]],
  },
  {
   title: "FK Interior",
-  category: "Residence Interiors",
+  category: "Residential Interior",
   location: "Emaar, Karachi – 4 Bedroom Apartment",
   files: [[".", "20220201_172239.jpg.jpeg"]],
  },
  {
   title: "QG Head Office",
-  category: "Commercial Interiors",
+  category: "Corporate Interior",
   location: "QG Head Office",
   replaceImages: true,
   files: [
@@ -95,8 +102,13 @@ const projects = [
   ],
  },
  {
+  title: "Syngenta Factory Cafeteria",
+  category: "Corporate Interior",
+  files: [],
+ },
+ {
   title: "Peng's Salon",
-  category: "Salons",
+  category: "Hospitality",
   location: "DHA Phase 01 – Karachi",
   files: [],
  },
@@ -140,6 +152,7 @@ const sourceFiles = projects.flatMap((project) =>
  project.files.map(([folder, filename]) => ({
   project,
   filename,
+  assetOwner: project.assetOwner ?? project.title,
   path: path.join(assetsRoot, folder, filename),
  })),
 );
@@ -157,7 +170,7 @@ const slugify = (value) =>
 const assetRefs = new Map();
 
 for (const file of sourceFiles) {
- const assetFilename = `${slugify(file.project.title)}--${file.filename}`;
+ const assetFilename = `${slugify(file.assetOwner)}--${file.filename}`;
  const existingAssetId = await client.fetch(
   '*[_type == "sanity.imageAsset" && originalFilename == $filename][0]._id',
   { filename: assetFilename },
@@ -184,8 +197,8 @@ for (const project of projects) {
   _type: existing?._type ?? "project",
   title: project.title,
   category: project.category,
-  location: project.location,
  };
+ if (project.location !== undefined) next.location = project.location;
  const images = project.replaceImages ? [] : [...(existing?.images ?? [])];
  const existingAssetIds = new Set(
   images.map((image) => image?.asset?._ref).filter(Boolean),

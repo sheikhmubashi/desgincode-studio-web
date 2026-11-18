@@ -1,0 +1,23 @@
+{
+  // Project-local OpenCode settings. See https://opencode.ai/docs/config
+  "$schema": "https://opencode.ai/config.json",
+
+  // Keep the file watcher off build output and generated types.
+  "watcher": {
+    "ignore": [".next/**", "node_modules/**", "tsconfig.tsbuildinfo"]
+  },
+
+  // Defaults already allow everything and ask before reading *.env files.
+  // These add guardrails around irreversible actions and secret writes.
+  "permissions": [
+    { "action": "read", "resource": "*.env*", "effect": "ask" },
+    { "action": "read", "resource": "*.env.example", "effect": "allow" },
+    { "action": "edit", "resource": "*.env*", "effect": "deny" },
+    { "action": "edit", "resource": "*.env.example", "effect": "allow" },
+
+    { "action": "shell", "resource": "git push *", "effect": "ask" },
+    { "action": "shell", "resource": "git reset --hard *", "effect": "ask" },
+    { "action": "shell", "resource": "git clean *", "effect": "ask" },
+    { "action": "shell", "resource": "rm -rf *", "effect": "ask" }
+  ]
+}
