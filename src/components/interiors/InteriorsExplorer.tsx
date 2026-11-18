@@ -141,7 +141,7 @@ export default function InteriorsExplorer({ projects }: InteriorsExplorerProps) 
      <button
       type="button"
       onClick={() => openBranch("commercial")}
-      className="group min-h-44 border border-[#2E2E2E]/20 p-6 text-left transition-colors hover:bg-[#C3D6D4]/30 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#2E2E2E] md:p-8"
+      className="group min-h-44 cursor-pointer border border-[#2E2E2E]/20 p-6 text-left transition-colors hover:bg-[#C3D6D4]/30 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#2E2E2E] md:p-8"
      >
       <span className="heading-page text-2xl text-black md:text-3xl">
        COMMERCIAL INTERIOR
@@ -153,7 +153,7 @@ export default function InteriorsExplorer({ projects }: InteriorsExplorerProps) 
      <button
       type="button"
       onClick={() => openBranch("residential")}
-      className="group min-h-44 border border-[#2E2E2E]/20 p-6 text-left transition-colors hover:bg-[#C3D6D4]/30 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#2E2E2E] md:p-8"
+      className="group min-h-44 cursor-pointer border border-[#2E2E2E]/20 p-6 text-left transition-colors hover:bg-[#C3D6D4]/30 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#2E2E2E] md:p-8"
      >
       <span className="heading-page text-2xl text-black md:text-3xl">
        RESIDENTIAL INTERIOR
@@ -170,7 +170,7 @@ export default function InteriorsExplorer({ projects }: InteriorsExplorerProps) 
      <button
       type="button"
       onClick={goBack}
-      className="nav-link mb-6 underline underline-offset-4"
+      className="nav-link mb-6 cursor-pointer underline underline-offset-4"
      >
       {branch === "commercial" && commercialCategory
        ? "← Commercial Interior"
@@ -178,12 +178,12 @@ export default function InteriorsExplorer({ projects }: InteriorsExplorerProps) 
      </button>
      {branch === "commercial" && commercialCategory && (
       <nav aria-label="Breadcrumb" className="mb-2">
-       <ol className="flex flex-wrap items-center gap-2 text-sm text-[#2E2E2E]">
+       <ol className="flex flex-wrap  items-center gap-2 text-sm text-[#2E2E2E]">
         <li>
          <button
           type="button"
           onClick={resetNavigation}
-          className="underline underline-offset-2"
+          className="cursor-pointer underline underline-offset-2"
          >
           Interiors
          </button>
@@ -193,7 +193,7 @@ export default function InteriorsExplorer({ projects }: InteriorsExplorerProps) 
          <button
           type="button"
           onClick={showCommercialCategories}
-          className="underline underline-offset-2"
+          className="cursor-pointer underline underline-offset-2"
          >
           Commercial Interior
          </button>
@@ -224,7 +224,7 @@ export default function InteriorsExplorer({ projects }: InteriorsExplorerProps) 
      <button
       type="button"
       onClick={() => openCommercialCategory("corporate")}
-      className="border border-[#2E2E2E]/20 p-5 text-left transition-colors hover:bg-[#C3D6D4]/30 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#2E2E2E]"
+      className="border cursor-pointer border-[#2E2E2E]/20 p-5 text-left transition-colors hover:bg-[#C3D6D4]/30 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#2E2E2E]"
      >
       <span className="heading-page text-xl text-black md:text-2xl">
        CORPORATE INTERIOR
@@ -233,7 +233,7 @@ export default function InteriorsExplorer({ projects }: InteriorsExplorerProps) 
      <button
       type="button"
       onClick={() => openCommercialCategory("hospitality")}
-      className="border border-[#2E2E2E]/20 p-5 text-left transition-colors hover:bg-[#C3D6D4]/30 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#2E2E2E]"
+      className="border cursor-pointer border-[#2E2E2E]/20 p-5 text-left transition-colors hover:bg-[#C3D6D4]/30 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#2E2E2E]"
      >
       <span className="heading-page text-xl text-black md:text-2xl">
        HOSPITALITY
