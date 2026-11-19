@@ -30,7 +30,7 @@ if (!token) {
 const projects = [
  {
   title: "NK Residence Interiors",
-  category: "Residential Interior",
+  category: "Houses & Apartments",
   location: "Karachi – 1000 sq yard private residence",
   files: [
    ["NK RESIDENCE", "HM1_5001.jpg"],
@@ -46,25 +46,21 @@ const projects = [
  },
  {
   title: "AB Interior",
-  category: "Residential Interior",
+  category: "Houses & Apartments",
   location: "Emaar, Karachi – 4 Bedroom Apartment",
   replaceImages: true,
   files: [],
  },
  {
-  title: "MTU Office",
-  category: "Corporate Interior",
-  assetOwner: "AB Interior",
-  files: [
-   ["projectphotos2commercialinteriors\\MTU OFFICE", "Director 1 View 1.jpg"],
-   ["projectphotos2commercialinteriors\\MTU OFFICE", "Director 1 view 2.jpg"],
-   ["projectphotos2commercialinteriors\\MTU OFFICE", "Confrence Room.jpg"],
-   ["projectphotos2commercialinteriors\\MTU OFFICE", "RECEPTION.jpg"],
-  ],
+  title: "Office for MTU",
+  existingTitle: "MTU Office",
+  category: "Corporate",
+  assetOwner: "Office for MTU",
+  files: [],
  },
  {
   title: "KI Interior",
-  category: "Residential Interior",
+  category: "Houses & Apartments",
   location: "Emaar, Karachi – 4 Bedroom Apartment",
   files: [
    ["KI Interiors", "LIVING ROOM - VIEW 01.jpg"],
@@ -77,19 +73,19 @@ const projects = [
  },
  {
   title: "Kasimali Residence",
-  category: "Residential Interior",
+  category: "Houses & Apartments",
   location: "Karachi – 666 sq yard private residence",
   files: [[".", "77001286_1356943504430008_6723283213214547968_n.jpg.jpeg"]],
  },
  {
   title: "FK Interior",
-  category: "Residential Interior",
+  category: "Houses & Apartments",
   location: "Emaar, Karachi – 4 Bedroom Apartment",
   files: [[".", "20220201_172239.jpg.jpeg"]],
  },
  {
   title: "QG Head Office",
-  category: "Corporate Interior",
+  category: "Corporate",
   location: "QG Head Office",
   replaceImages: true,
   files: [
@@ -103,13 +99,15 @@ const projects = [
  },
  {
   title: "Syngenta Factory Cafeteria",
-  category: "Corporate Interior",
+  category: "Corporate",
   files: [],
  },
  {
-  title: "Peng's Salon",
+  title: "Spang Salon",
+  existingTitle: "Peng's Salon",
   category: "Hospitality",
   location: "DHA Phase 01 – Karachi",
+  replaceImages: true,
   files: [],
  },
 ];
@@ -138,7 +136,12 @@ for (const project of projects) {
   .map((entry, index) => ({ entry, index }))
   .filter(
    ({ entry }) =>
-    entry.title?.trim().toLowerCase() === project.title.toLowerCase(),
+    [project.title, project.existingTitle]
+     .filter(Boolean)
+     .some(
+      (name) =>
+       entry.title?.trim().toLowerCase() === name.trim().toLowerCase(),
+     ),
   );
 
  if (matches.length > 1) {

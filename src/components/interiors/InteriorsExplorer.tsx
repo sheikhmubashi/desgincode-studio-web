@@ -19,8 +19,8 @@ type InteriorsExplorerProps = {
 };
 
 const categories = {
- residential: "Residential Interior",
- corporate: "Corporate Interior",
+ residential: "Houses & Apartments",
+ corporate: "Corporate",
  hospitality: "Hospitality",
 } as const;
 
@@ -123,6 +123,51 @@ export default function InteriorsExplorer({ projects }: InteriorsExplorerProps) 
   window.scrollTo({ top: 0, behavior: "smooth" });
  };
 
+  const getProjectMetadata = (project: InteriorsProject) => {
+   const rawLocation = project.location?.trim();
+   const description =
+    project.description?.trim() &&
+    project.description.trim().toLowerCase() !== project.title?.trim().toLowerCase()
+     ? project.description.trim()
+     : null;
+
+   if (!rawLocation) {
+    return {
+     location: null,
+     category: description,
+    };
+   }
+
+   if (rawLocation.toLowerCase() === project.title?.trim().toLowerCase()) {
+    return {
+     location: null,
+     category: null,
+    };
+   }
+
+   if (project.title === "Spang Salon") {
+    const [area, city] = rawLocation.split(/\s+[–-]\s+/);
+    return {
+     location: city?.trim() ?? rawLocation,
+     category: area?.trim() ?? null,
+    };
+   }
+
+   const separatorMatch = rawLocation.match(/\s+[–-]\s+/);
+   if (!separatorMatch || separatorMatch.index === undefined) {
+    return {
+     location: rawLocation,
+     category: description,
+    };
+   }
+
+   const separatorIndex = separatorMatch.index;
+   return {
+    location: rawLocation.slice(0, separatorIndex).trim(),
+    category: rawLocation.slice(separatorIndex + separatorMatch[0].length).trim(),
+   };
+  };
+
  return (
   <div className="mx-auto max-w-7xl scroll-smooth px-4 py-10 lg:px-12 lg:py-16">
    <header className="mb-10">
@@ -155,8 +200,8 @@ export default function InteriorsExplorer({ projects }: InteriorsExplorerProps) 
       onClick={() => openBranch("residential")}
       className="group min-h-44 cursor-pointer border border-[#2E2E2E]/20 p-6 text-left transition-colors hover:bg-[#C3D6D4]/30 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#2E2E2E] md:p-8"
      >
-      <span className="heading-page text-2xl text-black md:text-3xl">
-       RESIDENTIAL INTERIOR
+      <span className="heading-page text-2xl text-black md:text-3xl [text-transform:none]">
+        Houses &amp; Apartments
       </span>
       <span className="body-text mt-3 block text-[#2E2E2E]">
        Houses, residences and apartments
@@ -201,20 +246,20 @@ export default function InteriorsExplorer({ projects }: InteriorsExplorerProps) 
         <li aria-hidden="true">/</li>
         <li aria-current="page">
          {commercialCategory === "corporate"
-          ? "Corporate Interior"
+          ? "Corporate"
           : "Hospitality"}
         </li>
        </ol>
       </nav>
      )}
-     <h2 className="heading-page text-2xl text-black md:text-4xl">
+     <h2 className="heading-page text-2xl text-black md:text-4xl [text-transform:none]">
       {branch === "commercial"
        ? commercialCategory === "corporate"
-        ? "CORPORATE INTERIOR"
+        ? "Corporate"
         : commercialCategory === "hospitality"
-         ? "HOSPITALITY"
+          ? "Hospitality"
          : "COMMERCIAL INTERIOR"
-       : "RESIDENTIAL INTERIOR"}
+       : "Houses & Apartments"}
      </h2>
     </div>
    )}
@@ -226,8 +271,8 @@ export default function InteriorsExplorer({ projects }: InteriorsExplorerProps) 
       onClick={() => openCommercialCategory("corporate")}
       className="border cursor-pointer border-[#2E2E2E]/20 p-5 text-left transition-colors hover:bg-[#C3D6D4]/30 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#2E2E2E]"
      >
-      <span className="heading-page text-xl text-black md:text-2xl">
-       CORPORATE INTERIOR
+      <span className="heading-page text-xl text-black md:text-2xl [text-transform:none]">
+       Corporate
       </span>
      </button>
      <button
@@ -235,8 +280,8 @@ export default function InteriorsExplorer({ projects }: InteriorsExplorerProps) 
       onClick={() => openCommercialCategory("hospitality")}
       className="border cursor-pointer border-[#2E2E2E]/20 p-5 text-left transition-colors hover:bg-[#C3D6D4]/30 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#2E2E2E]"
      >
-      <span className="heading-page text-xl text-black md:text-2xl">
-       HOSPITALITY
+      <span className="heading-page text-xl text-black md:text-2xl [text-transform:none]">
+       Hospitality
       </span>
      </button>
     </section>
@@ -266,19 +311,26 @@ export default function InteriorsExplorer({ projects }: InteriorsExplorerProps) 
         className="scroll-mt-8 border-b border-[#2E2E2E]/15 pb-10"
        >
         <header className="mb-3">
-         <h3 className="heading-page text-2xl text-black md:text-3xl">
+         <h3 className="heading-page text-2xl text-black md:text-3xl [text-transform:none]">
           {project.title ?? "Interior project"}
          </h3>
-         {project.description && (
-          <p className="body-text mt-1 whitespace-pre-line leading-tight text-[#2E2E2E]">
-           {project.description}
-          </p>
-         )}
-         {project.location && (
-          <p className="body-text mt-0 whitespace-pre-line leading-tight text-[#2E2E2E]">
-           {project.location}
-          </p>
-         )}
+         {(() => {
+          const metadata = getProjectMetadata(project);
+          return (
+           <div className="mt-1 leading-tight text-[#2E2E2E]">
+            {metadata.location && (
+             <p className="body-text whitespace-pre-line leading-tight">
+              Location: {metadata.location}
+             </p>
+            )}
+            {metadata.category && (
+             <p className="body-text whitespace-pre-line leading-tight">
+              Category: {metadata.category}
+             </p>
+            )}
+           </div>
+          );
+         })()}
         </header>
 
         {projectPhotos.length > 0 ? (
