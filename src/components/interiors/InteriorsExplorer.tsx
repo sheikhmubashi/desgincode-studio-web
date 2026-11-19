@@ -174,11 +174,6 @@ export default function InteriorsExplorer({ projects }: InteriorsExplorerProps) 
     <h1 className="heading-page text-3xl text-black md:text-5xl">
      INTERIORS
     </h1>
-    {!branch && (
-     <p className="body-text mt-3 text-[#2E2E2E]">
-      Browse our commercial and residential interior projects.
-     </p>
-    )}
    </header>
 
    {!branch && (
@@ -192,7 +187,7 @@ export default function InteriorsExplorer({ projects }: InteriorsExplorerProps) 
        COMMERCIAL INTERIOR
       </span>
       <span className="body-text mt-3 block text-[#2E2E2E]">
-       Corporate and hospitality projects
+       Corporate and Hospitality
       </span>
      </button>
      <button
@@ -200,11 +195,11 @@ export default function InteriorsExplorer({ projects }: InteriorsExplorerProps) 
       onClick={() => openBranch("residential")}
       className="group min-h-44 cursor-pointer border border-[#2E2E2E]/20 p-6 text-left transition-colors hover:bg-[#C3D6D4]/30 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#2E2E2E] md:p-8"
      >
-      <span className="heading-page text-2xl text-black md:text-3xl [text-transform:none]">
-        Houses &amp; Apartments
+      <span className="heading-page text-2xl text-black md:text-3xl">
+        Residential Interior
       </span>
       <span className="body-text mt-3 block text-[#2E2E2E]">
-       Houses, residences and apartments
+       Houses and Apartments
       </span>
      </button>
     </section>
