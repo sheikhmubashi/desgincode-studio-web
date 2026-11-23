@@ -111,7 +111,7 @@ export async function getArchitecturePage(): Promise<ArchitecturePageData> {
 
 export async function getProjectBySlug(
  slug: string,
-): Promise<ProjectDetail | null> {
+): Promise<{ project: ProjectDetail | null } | null> {
  const { data } = await sanityFetch({
   query: PROJECT_BY_SLUG_QUERY,
   params: { slug },

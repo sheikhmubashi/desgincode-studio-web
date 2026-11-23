@@ -9,15 +9,7 @@ export const metadata: Metadata = {
 };
 
 export default async function ArchitecturePage() {
- console.log("Rendering ArchitecturePage");
  const data = await getArchitecturePage();
-
- console.log("Processed data:", {
-  pageTitle: data.pageTitle,
-  projectsCount: data.projects?.length,
-  projects: data.projects,
- });
-
  const projects = data.projects || [];
 
  return (

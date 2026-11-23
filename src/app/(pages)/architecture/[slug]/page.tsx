@@ -3,10 +3,7 @@ import React from "react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import {
- getProjectBySlug,
- type ProjectSection,
-} from "@/actions/getProjects";
+import { getProjectBySlug } from "@/actions/getProjects";
 import { PortableText } from "next-sanity";
 import ArchitectureGallery, {
  type ArchitectureGalleryGroup,
@@ -18,8 +15,8 @@ export async function generateMetadata({
  params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
  const { slug } = await params;
- const result: any = await getProjectBySlug(slug);
- const project = result?.project || result;
+ const result = await getProjectBySlug(slug);
+ const project = result?.project;
 
  if (!project) {
   return { title: "Project Not Found" };
@@ -36,10 +33,8 @@ export default async function ProjectPage({
  params: Promise<{ slug: string }>;
 }) {
  const { slug } = await params;
- const result: any = await getProjectBySlug(slug);
-
- // Handle both nested and direct project data
- const project = (result?.project as any) || result;
+ const result = await getProjectBySlug(slug);
+ const project = result?.project;
 
  if (!project) {
   notFound();
@@ -83,7 +78,7 @@ export default async function ProjectPage({
        title: project.title,
        images: project.images,
       },
-      ...((project.sections ?? []) as ProjectSection[]).map((section, index) => ({
+      ...(project.sections ?? []).map((section, index) => ({
        key: section.title || `section-${index}`,
        title: section.title || `Section ${index + 1}`,
        description: section.description,
