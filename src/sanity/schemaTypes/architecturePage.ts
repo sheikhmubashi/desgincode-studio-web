@@ -39,6 +39,12 @@ export const architecturePage = defineType({
        validation: (Rule) => Rule.required(),
       }),
       defineField({
+       name: "description",
+       title: "Description",
+       type: "text",
+       rows: 3,
+      }),
+      defineField({
        name: "mainImage",
        title: "Main Image",
        type: "image",
@@ -67,6 +73,55 @@ export const architecturePage = defineType({
            type: "string",
           }),
          ],
+        },
+       ],
+      }),
+      defineField({
+       name: "sections",
+       title: "Sub-sections",
+       description:
+        "Optional named groups of images shown below the main images on the project page.",
+       type: "array",
+       of: [
+        {
+         type: "object",
+         name: "section",
+         title: "Sub-section",
+         fields: [
+          defineField({
+           name: "title",
+           title: "Title",
+           type: "string",
+           validation: (Rule) => Rule.required(),
+          }),
+          defineField({
+           name: "description",
+           title: "Description",
+           type: "text",
+           rows: 3,
+          }),
+          defineField({
+           name: "images",
+           title: "Images",
+           type: "array",
+           of: [
+            {
+             type: "image",
+             options: { hotspot: true },
+             fields: [
+              defineField({
+               name: "alt",
+               title: "Alternative Text",
+               type: "string",
+              }),
+             ],
+            },
+           ],
+          }),
+         ],
+         preview: {
+          select: { title: "title" },
+         },
         },
        ],
       }),

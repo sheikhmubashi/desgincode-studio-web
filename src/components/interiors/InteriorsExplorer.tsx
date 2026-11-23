@@ -22,10 +22,13 @@ const categories = {
  residential: "Houses & Apartments",
  corporate: "Corporate",
  hospitality: "Hospitality",
+ pavilions: "Pavilions",
 } as const;
 
 export default function InteriorsExplorer({ projects }: InteriorsExplorerProps) {
- const [branch, setBranch] = useState<"commercial" | "residential" | null>(null);
+ const [branch, setBranch] = useState<
+  "commercial" | "residential" | "pavilions" | null
+ >(null);
  const [commercialCategory, setCommercialCategory] = useState<
   "corporate" | "hospitality" | null
  >(null);
@@ -36,11 +39,13 @@ export default function InteriorsExplorer({ projects }: InteriorsExplorerProps) 
  const visibleProjects =
   branch === "residential" && isShowingResidentialProjects
    ? projects.filter((project) => project.category === categories.residential)
-   : branch === "commercial" && commercialCategory
-    ? projects.filter(
-       (project) => project.category === categories[commercialCategory],
-      )
-    : [];
+   : branch === "pavilions"
+    ? projects.filter((project) => project.category === categories.pavilions)
+    : branch === "commercial" && commercialCategory
+     ? projects.filter(
+        (project) => project.category === categories[commercialCategory],
+       )
+     : [];
 
  const photos: InteriorPhoto[] = visibleProjects.flatMap((project) =>
   (project.images ?? []).flatMap((image, index) =>
@@ -109,7 +114,9 @@ export default function InteriorsExplorer({ projects }: InteriorsExplorerProps) 
   resetNavigation();
  };
 
- const openBranch = (nextBranch: "commercial" | "residential") => {
+ const openBranch = (
+  nextBranch: "commercial" | "residential" | "pavilions",
+ ) => {
   setBranch(nextBranch);
   setCommercialCategory(null);
   setIsShowingResidentialProjects(nextBranch === "residential");
@@ -145,14 +152,6 @@ export default function InteriorsExplorer({ projects }: InteriorsExplorerProps) 
     };
    }
 
-   if (project.title === "Spang Salon") {
-    const [area, city] = rawLocation.split(/\s+[–-]\s+/);
-    return {
-     location: city?.trim() ?? rawLocation,
-     category: area?.trim() ?? null,
-    };
-   }
-
    const separatorMatch = rawLocation.match(/\s+[–-]\s+/);
    if (!separatorMatch || separatorMatch.index === undefined) {
     return {
@@ -177,7 +176,7 @@ export default function InteriorsExplorer({ projects }: InteriorsExplorerProps) 
    </header>
 
    {!branch && (
-    <section aria-label="Interior categories" className="grid gap-6 md:grid-cols-2">
+    <section aria-label="Interior categories" className="grid gap-6 md:grid-cols-3">
      <button
       type="button"
       onClick={() => openBranch("commercial")}
@@ -202,6 +201,18 @@ export default function InteriorsExplorer({ projects }: InteriorsExplorerProps) 
        Houses and Apartments
       </span>
      </button>
+     <button
+      type="button"
+      onClick={() => openBranch("pavilions")}
+      className="group min-h-44 cursor-pointer border border-[#2E2E2E]/20 p-6 text-left transition-colors hover:bg-[#C3D6D4]/30 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#2E2E2E] md:p-8"
+     >
+      <span className="heading-page text-2xl text-black md:text-3xl">
+       Pavilions
+      </span>
+      <span className="body-text mt-3 block text-[#2E2E2E]">
+       Exhibition stalls and installations
+      </span>
+     </button>
     </section>
    )}
 
@@ -216,7 +227,8 @@ export default function InteriorsExplorer({ projects }: InteriorsExplorerProps) 
        ? "← Commercial Interior"
        : "← All Interiors"}
      </button>
-     {branch === "commercial" && commercialCategory && (
+     {((branch === "commercial" && commercialCategory) ||
+      branch === "pavilions") && (
       <nav aria-label="Breadcrumb" className="mb-2">
        <ol className="flex flex-wrap  items-center gap-2 text-sm text-[#2E2E2E]">
         <li>
@@ -229,21 +241,25 @@ export default function InteriorsExplorer({ projects }: InteriorsExplorerProps) 
          </button>
         </li>
         <li aria-hidden="true">/</li>
-        <li>
-         <button
-          type="button"
-          onClick={showCommercialCategories}
-          className="cursor-pointer underline underline-offset-2"
-         >
-          Commercial Interior
-         </button>
-        </li>
-        <li aria-hidden="true">/</li>
-        <li aria-current="page">
-         {commercialCategory === "corporate"
-          ? "Corporate"
-          : "Hospitality"}
-        </li>
+        {branch === "pavilions" ? (
+         <li aria-current="page">Pavilions</li>
+        ) : (
+         <>
+          <li>
+           <button
+            type="button"
+            onClick={showCommercialCategories}
+            className="cursor-pointer underline underline-offset-2"
+           >
+            Commercial Interior
+           </button>
+          </li>
+          <li aria-hidden="true">/</li>
+          <li aria-current="page">
+           {commercialCategory === "corporate" ? "Corporate" : "Hospitality"}
+          </li>
+         </>
+        )}
        </ol>
       </nav>
      )}
@@ -253,8 +269,10 @@ export default function InteriorsExplorer({ projects }: InteriorsExplorerProps) 
         ? "Corporate"
         : commercialCategory === "hospitality"
           ? "Hospitality"
-         : "COMMERCIAL INTERIOR"
-       : "Houses & Apartments"}
+          : "COMMERCIAL INTERIOR"
+       : branch === "pavilions"
+         ? "Pavilions"
+         : "Houses & Apartments"}
      </h2>
     </div>
    )}
@@ -358,7 +376,8 @@ export default function InteriorsExplorer({ projects }: InteriorsExplorerProps) 
    )}
 
    {((branch === "commercial" && commercialCategory) ||
-    (branch === "residential" && isShowingResidentialProjects)) &&
+    (branch === "residential" && isShowingResidentialProjects) ||
+    branch === "pavilions") &&
     visibleProjects.length === 0 && (
      <p className="body-text mt-10 text-gray-500">No projects in this category yet.</p>
     )}

@@ -29,7 +29,7 @@ if (!token) {
 
 const projects = [
  {
-  title: "NK Residence Interiors",
+  title: "NK RESIDENCE INTERIORS",
   category: "Houses & Apartments",
   location: "Karachi – 1000 sq yard private residence",
   files: [
@@ -45,21 +45,21 @@ const projects = [
   ],
  },
  {
-  title: "AB Interior",
+  title: "AB INTERIOR",
   category: "Houses & Apartments",
   location: "Emaar, Karachi – 4 Bedroom Apartment",
   replaceImages: true,
   files: [],
  },
  {
-  title: "Office for MTU",
+  title: "OFFICE FOR MTU",
   existingTitle: "MTU Office",
   category: "Corporate",
   assetOwner: "Office for MTU",
   files: [],
  },
  {
-  title: "KI Interior",
+  title: "KI INTERIOR",
   category: "Houses & Apartments",
   location: "Emaar, Karachi – 4 Bedroom Apartment",
   files: [
@@ -72,19 +72,19 @@ const projects = [
   ],
  },
  {
-  title: "Kasimali Residence",
+  title: "KASIMALI RESIDENCE",
   category: "Houses & Apartments",
   location: "Karachi – 666 sq yard private residence",
   files: [[".", "77001286_1356943504430008_6723283213214547968_n.jpg.jpeg"]],
  },
  {
-  title: "FK Interior",
+  title: "FK INTERIOR",
   category: "Houses & Apartments",
   location: "Emaar, Karachi – 4 Bedroom Apartment",
   files: [[".", "20220201_172239.jpg.jpeg"]],
  },
  {
-  title: "QG Head Office",
+  title: "QG HEAD OFFICE",
   category: "Corporate",
   location: "QG Head Office",
   replaceImages: true,
@@ -98,16 +98,15 @@ const projects = [
   ],
  },
  {
-  title: "Syngenta Factory Cafeteria",
+  title: "SYNGENTA FACTORY CAFETERIA",
   category: "Corporate",
   files: [],
  },
  {
-  title: "Spang Salon",
-  existingTitle: "Peng's Salon",
+  title: "PENG'S SALON - DHA PHASE 01",
+  existingTitle: "Pangs Salon",
   category: "Hospitality",
   location: "DHA Phase 01 – Karachi",
-  replaceImages: true,
   files: [],
  },
 ];

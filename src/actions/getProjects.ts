@@ -1,5 +1,6 @@
 // actions/getArchitecturePage.ts
 import { sanityFetch } from "@/sanity/lib/live";
+import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import { defineQuery } from "next-sanity";
 
 // Query to get architecture page with all its nested projects
@@ -9,6 +10,7 @@ const ARCHITECTURE_PAGE_QUERY = defineQuery(`
     projects[] {
       title,
       "slug": slug.current,
+      description,
       mainImage {
         asset,
         alt
@@ -17,6 +19,15 @@ const ARCHITECTURE_PAGE_QUERY = defineQuery(`
         asset,
         alt,
         _key
+      },
+      sections[] {
+        title,
+        description,
+        images[] {
+          asset,
+          alt,
+          _key
+        }
       },
       content
     }
@@ -29,6 +40,7 @@ const PROJECT_BY_SLUG_QUERY = defineQuery(`
     "project": projects[slug.current == $slug][0] {
       title,
       "slug": slug.current,
+      description,
       mainImage {
         asset,
         alt
@@ -38,22 +50,45 @@ const PROJECT_BY_SLUG_QUERY = defineQuery(`
         alt,
         _key
       },
+      sections[] {
+        title,
+        description,
+        images[] {
+          asset,
+          alt,
+          _key
+        }
+      },
       content
     }
   }
 `);
 
+export type ProjectSection = {
+ title: string | null;
+ description: string | null;
+ images: {
+  asset: SanityImageSource;
+  alt?: string;
+  _key?: string;
+ }[] | null;
+};
+
 export type ProjectCard = {
  title: string;
  slug: string;
+ description: string | null;
  mainImage: { asset: any; alt?: string } | null;
+ sections: ProjectSection[] | null;
 };
 
 export type ProjectDetail = {
  title: string;
  slug: string;
+ description: string | null;
  mainImage: { asset: any; alt?: string } | null;
  images: { asset: any; alt?: string; _key?: string }[] | null;
+ sections: ProjectSection[] | null;
  content: any | null;
 };
 
