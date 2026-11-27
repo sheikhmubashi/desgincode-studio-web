@@ -29,6 +29,8 @@ export default function MainHeader() {
       alt="Logo"
       width={40}
       height={40}
+      priority
+      loading="eager"
       className="lg:w-[60px] lg:h-[60px]"
      />
     </Link>

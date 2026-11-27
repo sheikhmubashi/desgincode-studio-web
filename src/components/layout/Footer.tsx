@@ -40,6 +40,7 @@ export default async function Footer() {
                   alt={`${link.platform}_icon`}
                   width={40}
                   height={40}
+                  style={{ width: 40, height: "auto" }}
                   className="cursor-pointer hover:opacity-70 transition-opacity"
                 />
               </Link>
